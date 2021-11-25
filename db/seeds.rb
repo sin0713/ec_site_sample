@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 #管理者
 Admin.create!(
   email: 'glass_tech@email.com',
@@ -35,12 +27,6 @@ Admin.create!(
     postal_code: "1111111",
   )
 
-  # ShippingAddress.create!(
-  #   customer_id: 1,
-  #   name: "山田二郎",
-  #   address: "東京都渋谷区神南1丁目19-11 パークウェースクエア2 4階",
-  #   post_code: "2222222",
-  # )
 
   # ジャンル
   Genre.create!(
@@ -59,35 +45,35 @@ Admin.create!(
   # 商品
   Product.create!(
     genre_id: 1,
-    name: "カップケーキ",
-    detail: "3個入り",
-    image_id: File.open("#{Rails.root}/app/assets/images/apple_pie.jpeg"),
+    name: "アップルパイ",
+    detail: "青森の高級りんごを贅沢に使用しています。",
+    image: File.open("#{Rails.root}/app/assets/images/apple_pie.jpg"),
     is_active: true,
     tax_excluded_price: 1000
   )
   Product.create!(
-    genre_id: 1,
-    name: "ショートケーキ",
-    detail: "おいしいいいいい！",
-    image_id: File.open("#{Rails.root}/app/assets/images/cheese_cake.jpeg"),
+    genre_id: 2,
+    name: "チーズケーキ",
+    detail: "味はグレープ・レモン・メロン・ピーチの4種類です。",
+    image: File.open("#{Rails.root}/app/assets/images/cheese_cake.jpg"),
     is_active: true,
     tax_excluded_price: 500
   )
   Product.create!(
-    genre_id: 1,
-    name: "ミルフィーユ",
-    detail: "いちごいっぱいだよ",
-    image_id: File.open("#{Rails.root}/app/assets/images/fruit_tart.jpeg"),
+    genre_id: 3,
+    name: "マカロン",
+    detail: "当店の焼き菓子の中で一番人気の商品です。",
+    image: File.open("#{Rails.root}/app/assets/images/makaron.jpg"),
     is_active: true,
-    tax_excluded_price: 600
+    tax_excluded_price:1000
   )
   Product.create!(
-    genre_id: 2,
-    name: "キャンディー",
-    detail: "マカロン",
-    image_id: File.open("#{Rails.root}/app/assets/images/makaron.jpeg"),
+    genre_id:4,
+    name: "フルーツタルト",
+    detail: "濃厚なキャラメルソースを贅沢に使用しています。",
+    image: File.open("#{Rails.root}/app/assets/images/fruit_tart.jpg"),
     is_active: true,
-    tax_excluded_price: 300
+    tax_excluded_price: 500
   )
 
   15.times do |n|
@@ -105,7 +91,7 @@ Admin.create!(
       name: "山田花子",
       address: "東京都渋谷区ちぇるちぇるランド",
       postal_code: "0000000",
-      total_price: "10800",
+      total_price: "2200",
       payment_method: 0,
       status: 4,
       created_at: (15 - n).day.ago
