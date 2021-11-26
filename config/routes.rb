@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :admin, skip:[:registration, :passwords], controllers:{
     sessions: "admin/sessions"
   }
-  
+
   namespace :admin do
     root to: 'homes#top'
     resources :products, except:[:destroy]
@@ -11,17 +11,17 @@ Rails.application.routes.draw do
     resources :orders, only:[:index, :show, :update]
     resources :order_details, only:[:update]
   end
-  
-  
+
+
   root to: "public/homes#top"
-  
+
 
   devise_for :customer, skip:[:passwords], controllers:{
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
-  
-  
+
+
   scope module: :public do
     get "/about", to: "homes#about"
     get "/customer/quit", to: "customers#quit"
@@ -39,6 +39,8 @@ Rails.application.routes.draw do
     resources :deliveries, except:[:new, :show]
   end
 
+  # 検索機能
+    get '/genre_search', to: "searches#genre_search"
+    get '/product_search', to: "searches#product_search"
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

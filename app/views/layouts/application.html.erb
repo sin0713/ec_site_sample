@@ -10,6 +10,68 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <div class="header-wrapper">
+        <div class="nav-wrapper">
+          <nav class="nav">
+            <% if customer_signed_in? %>
+            <ul class="nav-menu">
+              <li class="nav-menu-item01">
+                <%= link_to "マイページ", customers_path, class:"text-light" %>
+              </li>
+              <li class="nav-menu-item02">
+                <%= link_to "商品一覧", products_path, class:"text-light" %>
+              </li>
+              <li class="nav-menu-item03">
+                <%= link_to "カート", cart_products_path, class:"text-light" %>
+              </li>
+              <li class="nav-menu-item04">
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"text-light" %>
+              </li>
+            </ul>
+        <% else %>
+            <ul class="nav-menu">
+              <li class="nav-menu-item01">
+                <%= link_to "About", about_path, class:"text-light" %>
+              </li>
+              <li class="nav-menu-item02">
+                <%= link_to "商品一覧", products_path, class:"text-light" %>
+              </li>
+              <li class="nav-menu-item03">
+                <%= link_to "新規登録", new_customer_registration_path, class:"text-light" %>
+              </li>
+              <li class="nav-menu-item04">
+                <%= link_to "ログイン", new_customer_session_path, class:"text-light" %>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="top-heading-wrapper">
+          <h1 class="text-light nagano-cake">Nagono Cake</h1>
+        </div>
+        <div class="search-wrapper">
+          <%= form_with url: product_search_path, method: :get, local: true do |f| %>
+            <div class="input-group">
+              <%= f.text_field :keyword, placeholder: "キーワード", class: "form-control" %>
+
+              <span class="input-group-append">
+              <%= button_tag type: 'submit', class: "btn btn-outline-light" do %>
+                <i class="fas fa-search">Search</i>
+              <% end %>
+              </span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <% end %>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+
+    </footer>
+
   </body>
 </html>

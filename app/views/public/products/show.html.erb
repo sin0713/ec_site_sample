@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row no-gutter">
+    <div class="col-md-3"></div>
+    <div class="col-md-9">
+      <div class="row no-gutter">
+        <div class="col-md-4 mr-3">
+          <%= attachment_image_tag @product, :image, :fill, 250, 250, class:"shadow-lg" %>
+        </div>
+        <div class="clo-md-7 offset-md-1">
+          <h4><%= @product.name %></h4>
+          <p><%= @product.detail %></p>
+          ￥<%= @product.add_tax_included_price.to_s(:delimited) %><span>（税込み)</span>
+
+          <% if customer_signed_in? %>
+            <% if @product.is_active? %>
+              <%= form_with model: @cart_product, url: cart_products_path, method: :post, local: true do %>
+                <%= f.select :quantity, options_for_select((1..10).to_a), include_blank: "個数選択" %>
+                <%= f.hidden_field :product_id, :value => @product.id %>
+                <%= f.submit "カートに入れる", class:"btn btn-primary "%>
+              <% end %>
+            <% else %>
+              <p>売り切れ</p>
+            <% end %>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
