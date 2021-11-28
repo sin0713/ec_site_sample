@@ -37,10 +37,9 @@ Rails.application.routes.draw do
       end
     end
     resources :deliveries, except:[:new, :show]
-  end
-
-  # 検索機能
+    
+    # 検索機能
     get '/genre_search', to: "searches#genre_search"
     get '/product_search', to: "searches#product_search"
-
+  end
 end
